@@ -3,15 +3,13 @@ version: '3.8'
 services:
   db:
     image: postgres:16
-    container_name: ma_base_de_donnees_persistante
+    container_name: ${DB_NAME}
     restart: unless-stopped
     environment:
-      # Ces variables sont maintenant lues depuis le fichier .env
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      # Le port est aussi configurable via le .env
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
